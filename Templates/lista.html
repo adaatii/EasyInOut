@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+  <br>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">RFID</th>
+            <th scope="col">DATA</th>
+            <th scope="col">HORA</th>
+            <th scope="col">STATUS</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for registro in listData['registros'].items %}
+        <tr>
+            <td>{{registro.rfid}}</td>
+            <td>{{registro.dt}}</td>
+            <td>{{registro.hr}}</td>
+            <td>{{registro.statusReg}}</td>
+        </tr>
+      {% endfor %}
+        </tbody>
+  </table>
+
+  <div style="display: flex;">
+    {% if listData['registros'].has_prev %}
+      <a href="{{ listData['registros'].prev_num }}">< Cursos anteriores |</a>
+    {% else %}
+      <p>< Cursos anteriores |</p>
+    {% endif %}
+    
+    {% if listData['registros'].has_next %}
+      
+      {% if listData['page'] == 1 %}
+        <a href="list/{{ listData['registros'].next_num}}">| Próximos Cursos ></a>
+      {% else %}
+        <a href="{{ listData['registros'].next_num}}">| Próximos Cursos ></a>
+      {% endif %}
+        
+    {% else %}
+        <p>| Próximos Cursos ></p>
+    {% endif %}
+  </div>
+
+{% endblock conteudo %}

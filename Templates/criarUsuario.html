@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h2 style="text-align: center;">Eu sou o Cadastro usuário</h2>
+
+<div class="container">
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-danger">
+        {{message}}
+    </div>
+{% endfor %}
+<form method="POST" action="{{url_for('router.user.createUser')}}">
+  <div class="row">
+    <div class="col-sm-6">
+      <input type="text" class="form-control" name="rfid" placeholder="Identificação RFID" ><br>
+      <input type="text" class="form-control" name="mat" placeholder="Registro" ><br>
+      <input type="text" class="form-control" name="nome" placeholder="Nome do Cliente" ><br>
+      <input type="text" class="form-control" name="endereco" placeholder="Endereço" ><br>
+      <input type="text" class="form-control" name="contato" placeholder="Contato" ><br>
+      <hr>        
+        <button type="submit" name="bt1" value="1" class="btn btn-secondary">Enviar</button>
+    </div>
+  </div>
+  <hr> 
+    <!-- Div principal alinha todas as informações abaixo -->
+  <!--<div class="row justify-content-center">
+    <div> <!-- esta Div mantem as informações alinhadas a esquerda
+      <div>
+        <h5>Tempo de atendimento</h5>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-secondary">
+            <input type="radio" name="r1" value="0"> Ruim
+          </label>
+        </div>
+      </div>      
+      <!-- fechamento da Div que mantem as informações alinhadas a esquerda
+    </div> 
+  </div>-->
+</div>
+</form>
+{% endblock conteudo %}

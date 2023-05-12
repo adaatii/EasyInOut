@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+  <br>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">RFID</th>
+            <th scope="col">NOME</th>
+            <th scope="col">MATRICULA</th>
+            <th scope="col">ENDEREÇO</th>
+            <th scope="col">CONTATO</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for registro in listData['regUser'].items %}
+        <tr>
+            <td>{{registro.rfid}}</td>
+            <td>{{registro.nome}}</td>
+            <td>{{registro.mat}}</td>
+            <td>{{registro.endereco}}</td>
+            <td>{{registro.contato}}</td>          
+        </tr>
+      {% endfor %}
+        </tbody>
+  </table>
+
+  <div style="display: flex;">
+    {% if listData['regUser'].has_prev %}
+      <a href="{{ listData['regUser'].prev_num }}">< Cursos anteriores |</a>
+    {% else %}
+      <p>< Cursos anteriores |</p>
+    {% endif %}
+    
+    {% if listData['regUser'].has_next %}
+      
+      {% if listData['page'] == 1 %}
+        <a href="list/{{ listData['regUser'].next_num}}">| Próximos Cursos ></a>
+      {% else %}
+        <a href="{{ listData['regUser'].next_num}}">| Próximos Cursos ></a>
+      {% endif %}
+        
+    {% else %}
+        <p>| Próximos Cursos ></p>
+    {% endif %}
+  </div>
+
+{% endblock conteudo %}

@@ -13,10 +13,10 @@ class Registro(db.Model):
     self.hr = _hr
     self.statusReg = _statusReg
 
-class User(db.Model):
+class UserBd(db.Model):
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-  mat = db.Column(db.Integer)
-  rfid = db.Column(db.String(8))
+  mat = db.Column(db.Integer, unique=True)
+  rfid = db.Column(db.String(8), unique=True)
   nome = db.Column(db.String(150))
   endereco = db.Column(db.String(150))
   contato = db.Column(db.String(150))
@@ -28,6 +28,23 @@ class User(db.Model):
     self.endereco = _endereco
     self.contato = _contato
 
+class FuncBd(db.Model):
+  id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+  mat = db.Column(db.Integer, unique=True)
+  nome = db.Column(db.String(150))
+  endereco = db.Column(db.String(150))
+  contato = db.Column(db.String(150))
+  email = db.Column(db.String(150))
+  senha = db.Column(db.String(150))
+
+  def __init__(self, _mat, _nome, _endereco, _contato, _email, _senha):    
+    self.mat = _mat
+    self.nome = _nome
+    self.endereco = _endereco
+    self.contato = _contato
+    self.email = _email    
+    self.senha = _senha    
+    
 class CartaoRFID(db.Model):
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
   rfidCartao = db.Column(db.String(8))

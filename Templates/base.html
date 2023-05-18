@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{url_for('router.home.index')}}">EasyInOut</a>
+            <a class="navbar-brand" href="{{url_for('router.home.home')}}">EasyInOut</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{url_for('router.home.index')}}">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{url_for('router.home.home')}}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url_for('router.traffic.list')}}">Registros</a>
@@ -30,19 +30,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url_for('router.about.sobre')}}">Sobre</a>
                     </li>
-                    <div class="dropdown">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Usuários
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{url_for('router.user.createUser')}}">Cadastro de
-                                        usuários</a></li>
-                                <li><a class="dropdown-item" href="{{url_for('router.user.user')}}">Lista de
-                                        usuários</a>
-                            </ul>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('router.user.listUser')}}">Usuários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('router.func.listFunc')}}">Funcionários</a>
+                    </li>
                 </ul>
             </div>
         </div>

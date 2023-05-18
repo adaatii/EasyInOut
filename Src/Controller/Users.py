@@ -1,17 +1,35 @@
-from Src.Model.BancoDados import User
+from Src.Model.BancoDados import UserBd
 from confg import db
+from sqlalchemy.exc import IntegrityError
 
-
-class Users:  
+class UsersController:  
   def createUser(mat,rfid,nome,endereco,contato):
-    user = User(mat,rfid,nome,endereco,contato)
-    db.session.add(user)
-    db.session.commit()   
+    user = UserBd(mat,rfid,nome,endereco,contato)
+    db.session.add(user) 
+    try:
+      db.session.commit()
+      return True
+    except IntegrityError:
+      db.session.rollback
+      return False
 
-
+  def updateUser(id, _registro, _rfid, _nome, _endereco, _contato):   
+    try:
+      UserBd.query.filter_by(id=id).update({'mat':_registro,'rfid':_rfid,'nome':_nome, 'endereco':_endereco,'contato':_contato})
+      db.session.commit()
+      return True
+    except IntegrityError:
+      db.session.rollback
+      return False
+      
+  def removeUser(id):   
+    _user = UserBd.query.filter_by(id=id).first()    
+    db.session.delete(_user)
+    db.session.commit()
+    
   def List(page, per_page=15):
-    query = User.query.paginate(page=page, per_page=per_page)
-    queryCount = User.query.count()
+    query = UserBd.query.paginate(page=page, per_page=per_page)
+    queryCount = UserBd.query.count()
     return {
       "regUser": query,
       "count": queryCount,

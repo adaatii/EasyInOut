@@ -3,6 +3,7 @@
 # Env Files
 venv/
 .venv/
+.easy_env/
 # Editor Files
 /poetry.lock
 /pyproject.toml

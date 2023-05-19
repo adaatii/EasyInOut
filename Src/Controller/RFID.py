@@ -3,6 +3,7 @@ from datetime import datetime
 from pytz import timezone
 from confg import db
 
+
 class RFID:
   def Register(rfidCode): 
     #Grab date/time
@@ -24,16 +25,22 @@ class RFID:
       db.session.add(reg)
       db.session.commit() 
 
-  def List(page, per_page=15):
+  def List(page, _data, per_page=15):
     sao_paulo = timezone('America/Sao_Paulo')
-    now = datetime.now(sao_paulo)
-    data = now.strftime("%d/%m/%Y")   
-    query = Registro.query.filter_by(dt=data).paginate(page=page, per_page=per_page)   
+    now = datetime.now(sao_paulo)   
+    data = now.strftime("%d/%m/%Y") 
+    print(data)
+    if _data == None:
+      query = Registro.query.filter_by(dt=data).paginate(page=page, per_page=per_page)
+    else: 
+      _dataFilter=datetime.strptime(_data, '%Y-%m-%d').strftime('%d/%m/%Y')   
+      query = Registro.query.filter_by(dt=_dataFilter).paginate(page=page, per_page=per_page)  
     
     return {
       "registros": query,      
       "page": page,
       "per_page": per_page
+      
     }
 
   

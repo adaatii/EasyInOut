@@ -27,9 +27,15 @@ class UsersController:
     db.session.delete(_user)
     db.session.commit()
     
-  def List(page, per_page=15):
-    query = UserBd.query.paginate(page=page, per_page=per_page)
-    queryCount = UserBd.query.count()
+  def List(page, _userFilter, per_page=15):
+    if _userFilter == None:
+      query = UserBd.query.paginate(page=page, per_page=per_page)
+      queryCount = UserBd.query.count()
+    else: 
+      print(_userFilter)
+      query = UserBd.query.filter(UserBd.nome.like('%'+_userFilter+'%')).paginate(page=page, per_page=per_page)  
+      queryCount = UserBd.query.count()
+    
     return {
       "regUser": query,
       "count": queryCount,

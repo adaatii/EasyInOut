@@ -1,5 +1,4 @@
 #include <HTTPClient.h>
-
 #include <MFRC522.h>
 #include <MFRC522Extended.h>
 #include <SPI.h>
@@ -7,7 +6,6 @@
 
 //Incluindo o sistema de senhas do sistema RFID
 #include "arduino_secrets.h"
-
 
 //Definição dos pinos do RFID
 #define SS_PIN 21
@@ -36,11 +34,9 @@ void setup() {
         HTTPClient http;
         http.begin(url);
     }
-
     Serial.println("");
     Serial.println("WiFi connected.");
     Serial.println("IP address: ");
-    Serial.println(WiFi.localIP());
     
     server.begin();
 }

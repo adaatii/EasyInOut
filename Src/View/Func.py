@@ -4,10 +4,11 @@ from Src.Model.BancoDados import FuncBd
 
 Func = Blueprint('func', __name__)
 
-@Func.route('/list', defaults={'page':1})
-@Func.route('/list/<int:page>')
+@Func.route('/list', defaults={'page':1}, methods=['GET','POST'])
+@Func.route('/list/<int:page>', methods=['GET','POST'])
 def listFunc(page):
-  return render_template('listaFuncionario.html', listData=FuncsController.List(page))
+  _funcFilter=request.form.get('nomeFuncionario')
+  return render_template('listaFuncionario.html', listData=FuncsController.List(page,_funcFilter))
 
 @Func.route('/createFunc', methods=['GET', 'POST'])
 def createFunc():
@@ -19,7 +20,7 @@ def createFunc():
   _senha=request.form.get('senha')
 
   if request.method == 'POST':
-    if not _registro or not _nome or not _endereco or not _contato or not _email or not _senha:     
+    if any((x is None or len(x)<1) for x in [_registro, _nome, _endereco, _contato , _email, _senha]):
       flash('Preencha todos os campos do formulário', 'error')
     else:
       if FuncsController.createFunc(_registro,_nome,_endereco,_contato,_email,_senha):      
@@ -39,7 +40,7 @@ def updateFunc(id):
 
   _func = FuncBd.query.filter_by(id=id).first()
   if request.method == 'POST':
-    if not _registro or not _nome or not _endereco or not _contato or not _email or not _senha:     
+    if any((x is None or len(x)<1) for x in [_registro, _nome, _endereco, _contato , _email, _senha]):
         flash('Preencha todos os campos do formulário', 'error')
     else:
         if FuncsController.updateFunc(id, _registro,_nome,_endereco,_contato,_email,_senha):

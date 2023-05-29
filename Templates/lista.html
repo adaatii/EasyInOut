@@ -41,12 +41,8 @@
       <p> «Anteriores |</p>
     {% endif %}
     
-    {% if listData['registros'].has_next %}      
-      {% if listData['page'] == 1 %}
-        <a href="list/{{ listData['registros'].next_num}}">| Próximos»</a>
-      {% else %}
-        <a href="{{ listData['registros'].next_num}}">| Próximos»</a>
-      {% endif %}        
+    {% if listData['registros'].has_next %}    
+        <a href="list/{{listData['registros'].next_num}}">| Próximos»</a>       
     {% else %}
         <p>| Próximos»</p>
     {% endif %}

@@ -12,4 +12,3 @@ venv/
 # Other Files
 __pycache__/
 /TODO.md
-/instance/easyinout.sqlite3

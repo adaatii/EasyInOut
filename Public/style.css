@@ -1,19 +1,20 @@
-*{
+html, * {
   color: darkred;
 }
 
-.divider:after,
-.divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
 }
-.h-custom {
-height: calc(100% - 73px);
+
+.intro {
+  height: 100%;
+  width: 100%;
 }
-@media (max-width: 450px) {
-.h-custom {
-height: 100%;
-}
-}
+
+

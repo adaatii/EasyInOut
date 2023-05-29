@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block conteudo %}  
+{% block conteudo %}
 <br>
 <a href="{{url_for('router.user.createUser')}}" class="btn btn-secondary btn-xs">Cadastrar novo usuário</a>
 <hr>
@@ -16,51 +16,45 @@
 </div>
 <br>
 <table class="table table-bordered table-hover">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">RFID</th>
-      <th scope="col">NOME</th>
-      <th scope="col">MATRICULA</th>
-      <th scope="col">ENDEREÇO</th>
-      <th scope="col">CONTATO</th>
-      <th scope="col">Ações</th>
-    </tr>
-</thead>
-<tbody>
-    {% for registro in listData['regUser'].items %}
-    <tr>
-        <td>{{registro.rfid}}</td>
-        <td>{{registro.nome}}</td>
-        <td>{{registro.mat}}</td>
-        <td>{{registro.endereco}}</td>
-        <td>{{registro.contato}}</td>
-        <td>
-            <a href="{{registro.id}}/updateUser" class="btn btn-secondary btn-xs">Editar</a>
-            <a href="{{registro.id}}/removeUser" onclick="return confirm('Deseja realmente excluir esse registro ?')"
-                class="btn btn-danger btn-xs">Excluir</a>
-        </td>
-    </tr>
-    {% endfor %}
-</tbody>
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">RFID</th>
+            <th scope="col">NOME</th>
+            <th scope="col">MATRICULA</th>
+            <th scope="col">ENDEREÇO</th>
+            <th scope="col">CONTATO</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for registro in listData['regUser'].items %}
+        <tr>
+            <td>{{registro.rfid}}</td>
+            <td>{{registro.nome}}</td>
+            <td>{{registro.mat}}</td>
+            <td>{{registro.endereco}}</td>
+            <td>{{registro.contato}}</td>
+            <td>
+                <a href="{{registro.id}}/updateUser" class="btn btn-secondary btn-xs">Editar</a>
+                <a href="{{registro.id}}/removeUser"
+                    onclick="return confirm('Deseja realmente excluir esse registro ?')"
+                    class="btn btn-danger btn-xs">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 <div style="display: flex;">
     {% if listData['regUser'].has_prev %}
-      <a href="{{ listData['regUser'].prev_num }}"> «Anteriores |</a>
+    <a href="{{ listData['regUser'].prev_num }}"> «Anteriores |</a>
     {% else %}
-      <p> «Anteriores |</p>
+    <p> «Anteriores |</p>
     {% endif %}
-    
+
     {% if listData['regUser'].has_next %}
-      
-      {% if listData['page'] == 1 %}
-        <a href="list/{{ listData['regUser'].next_num}}">| Próximos»</a>
-      {% else %}
-        <a href="{{ listData['regUser'].next_num}}">| Próximos»</a>
-      {% endif %}
-        
+    <a href="list/{{ listData['regUser'].next_num}}">| Próximos»</a>
     {% else %}
-        <p>| Próximos»</p>
+    <p>| Próximos»</p>
     {% endif %}
 </div>
-
 {% endblock conteudo %}

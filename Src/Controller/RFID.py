@@ -2,6 +2,7 @@ from Src.Model.BancoDados import Registro, UserBd
 from datetime import datetime
 from pytz import timezone
 from confg import db
+from inspect import getmembers
 
 
 class RFID:
@@ -16,6 +17,7 @@ class RFID:
     user = UserBd.query.filter_by(rfid=rfidCode).first()   
     if user == None:
       print("Não existe cadastro")
+      return "0"
     else:
       #Filter rfid regiters
       query = Registro.query.filter_by(rfid=rfidCode, dt=data).all()
@@ -24,23 +26,25 @@ class RFID:
       reg = Registro(rfidCode, data,hora, status)      
       db.session.add(reg)
       db.session.commit() 
+      return "1"
 
-  def List(page, _data, per_page=15):
+  def List(page, _data, per_page=10):
     sao_paulo = timezone('America/Sao_Paulo')
     now = datetime.now(sao_paulo)   
     data = now.strftime("%d/%m/%Y") 
     print(data)
-    if _data == None:
+    if _data == None or len(_data)<1:
       query = Registro.query.filter_by(dt=data).paginate(page=page, per_page=per_page)
     else: 
-      _dataFilter=datetime.strptime(_data, '%Y-%m-%d').strftime('%d/%m/%Y')   
+      _dataFilter = datetime.strptime(_data,'%Y-%m-%d').strftime('%d/%m/%Y')   
       query = Registro.query.filter_by(dt=_dataFilter).paginate(page=page, per_page=per_page)  
-    
+    queryCount = Registro.query.count()
+    #print(getmembers(query))
     return {
       "registros": query,      
       "page": page,
-      "per_page": per_page
-      
+      "per_page": per_page,
+      "count": queryCount
     }
 
   

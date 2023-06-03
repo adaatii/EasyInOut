@@ -12,6 +12,8 @@
 //Definição dos pinos do RFID
 #define SS_PIN 21
 #define RST_PIN 22
+#define greenLed 4
+#define redLed 2
 
 // Cria um objeto servo
 Servo servo1; 
@@ -55,6 +57,8 @@ void setup() {
   // Attach to servo and define minimum and maximum positions
   // Modify as required
 
+   pinMode(redLed, OUTPUT);
+   pinMode(greenLed, OUTPUT);
 }
 
 void loop() {
@@ -118,9 +122,14 @@ void enviarPagina(String cartaoRFID) {
 void servoRet(String resposta){
  if (resposta == "1") {               
         servo1.write(90);
-        delay(5000);
+        digitalWrite(greenLed, HIGH);         
+        delay(2500);
+        digitalWrite(greenLed, LOW);
         servo1.write(1);
       }else{
         servo1.write(1);
+        digitalWrite(redLed, HIGH);
+        delay(2500);
+        digitalWrite(redLed, LOW);
        }
 }

@@ -1,5 +1,11 @@
-{% extends 'base1.html' %}
+{% extends 'base.html' %}
 {% block conteudo %}
+<br>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="alert alert-danger">
+        {{message}}
+    </div>  
+{% endfor %}
 <br>
 <section class="vh-100">
     <div class="container-fluid h-custom">
@@ -9,6 +15,10 @@
                     class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <div>
+                  <p style="text-align:left; font-size: 20px; width: 700px;">Digite email e senha para realizar o login</p>
+                </div>
+                <br>
                 <form method="POST" action="{{url_for('router.login.makeLogin')}}">
                     <!-- Email input -->
                     <div class="form-outline mb-4">

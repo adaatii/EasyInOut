@@ -13,5 +13,5 @@ def register(rfid):
 @Traffic.route('/list/<int:page>', methods=['GET','POST'])
 @login_required
 def list(page):
-  _data=request.form.get('filtroData')  
-  return render_template('lista.html', listData=RFID.List(page,_data))
+  _data=request.values.get('filtroData') 
+  return render_template('lista.html', listData=RFID.List(page,_data),_data=_data)

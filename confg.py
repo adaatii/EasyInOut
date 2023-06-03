@@ -17,5 +17,6 @@ db = SQLAlchemy(app)
 
 login_manager = LoginManager()
 login_manager.login_view = 'router.login.login'
+login_manager.login_message = 'Realize o login para acessar essa página!'
 login_manager.init_app(app)
 

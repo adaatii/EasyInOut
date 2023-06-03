@@ -8,7 +8,7 @@ def emailRegex(_email):
 
 def contatoRegex(contato):
   contatoRegex = re.compile(
-    r'^([0-9]{2})\s([9]{1})?([0-9]{4})-([0-9]{4})$'
+    r'^\(\d{2}\) (\d{0,5})-(\d{4})$'
   )
   return True if re.fullmatch(contatoRegex, contato) else False
 

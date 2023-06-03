@@ -27,8 +27,8 @@ class UsersController:
     db.session.delete(_user)
     db.session.commit()
     
-  def List(page, _userFilter, per_page=10):
-    if _userFilter == None:
+  def List(page, _userFilter, per_page=15):
+    if len(_userFilter)<1:
       query = UserBd.query.paginate(page=page, per_page=per_page)
       queryCount = UserBd.query.count()
     else: 

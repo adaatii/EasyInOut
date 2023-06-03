@@ -5,12 +5,14 @@ from flask_login import login_required
 
 User = Blueprint('user', __name__)
 
-@User.route('/list', defaults={'page':1}, methods=['GET','POST'])
-@User.route('/list/<int:page>', methods=['GET','POST'])
+@User.route('/list', defaults={'page':1}, methods=['GET'])
+@User.route('/list/<int:page>', methods=['GET'])
 @login_required
 def listUser(page):
-  _userFilter=request.form.get('nomeUsuario')
-  return render_template('listaUsuario.html', listData=UsersController.List(page, _userFilter))
+  _userFilter=request.values.get('nomeUsuario')
+  if _userFilter == 'None' or _userFilter is None:
+    _userFilter=""
+  return render_template('listaUsuario.html', listData=UsersController.List(page, _userFilter),_nomeUser=_userFilter)
 
 @User.route('/createUser', methods=['GET', 'POST'])
 @login_required

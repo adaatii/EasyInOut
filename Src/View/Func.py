@@ -4,15 +4,16 @@ from Src.Model.BancoDados import FuncBd
 from flask_login import login_required
 from Src.Model import Regex
 
-
 Func = Blueprint('func', __name__)
 
-@Func.route('/list', defaults={'page':1}, methods=['GET','POST'])
-@Func.route('/list/<int:page>', methods=['GET','POST'])
+@Func.route('/list', defaults={'page':1}, methods=['GET'])
+@Func.route('/list/<int:page>', methods=['GET'])
 @login_required
 def listFunc(page):
-  _funcFilter=request.form.get('nomeFuncionario')
-  return render_template('listaFuncionario.html', listData=FuncsController.List(page,_funcFilter))
+  _funcFilter=request.values.get('nomeFuncionario')
+  if _funcFilter == 'None' or _funcFilter is None:
+    _funcFilter=""  
+  return render_template('listaFuncionario.html', listData=FuncsController.List(page,_funcFilter),_nomeFunc=_funcFilter)
 
 @Func.route('/createFunc', methods=['GET', 'POST'])
 @login_required
@@ -25,16 +26,22 @@ def createFunc():
   _senha=request.form.get('senha')
   
   if request.method == 'POST':
-    if any((x is None or len(x)<1) for x in [_registro, _nome, _endereco, _contato , _email, _senha]):
-      flash('Preencha todos os campos do formulário', 'error')
+    if FuncsController.checkEmail(_email):
+      flash('Email já cadastrado', 'error')
     else:
-      if Regex.emailRegex(_email):
-        if FuncsController.createFunc(_registro,_nome,_endereco,_contato,_email,_senha):      
-          return redirect(url_for('router.func.listFunc'))
-        else:
-          flash('Funcionário já cadastrado', 'error')
+      if any((x is None or len(x)<1) for x in [_registro, _nome, _endereco, _contato , _email, _senha]):
+        flash('Preencha todos os campos do formulário', 'error')
       else:
-        flash('E-mail inválido', 'error')
+        if Regex.contatoRegex(_contato):
+          if Regex.emailRegex(_email):
+            if FuncsController.createFunc(_registro,_nome,_endereco,_contato,_email,_senha):      
+              return redirect(url_for('router.func.listFunc'))
+            else:
+              flash('Funcionário já cadastrado', 'error')
+          else:
+            flash('E-mail inválido', 'error')
+        else:
+            flash('Celular inválido', 'error')
   return render_template('criarFuncionario.html')
 
 @Func.route('/<int:id>/updateFunc', methods=['GET','POST'])

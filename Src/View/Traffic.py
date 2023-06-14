@@ -14,4 +14,5 @@ def register(rfid):
 @login_required
 def list(page):
   _data=request.values.get('filtroData') 
-  return render_template('lista.html', listData=RFID.List(page,_data),_data=_data)
+  _nome=request.values.get('filtroNome')
+  return render_template('lista.html', listData=RFID.List(page,_data,_nome),_data=_data, _nome=_nome)

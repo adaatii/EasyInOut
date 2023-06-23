@@ -25,28 +25,32 @@
                 <thead class="table-dark">
                   <tr>
                     <th scope="col">NOME</th>
-                    <th scope="col">MATRICULA</th>
+                    <th scope="col">MATRÍCULA</th>
                     <th scope="col">ENDEREÇO</th>
                     <th scope="col">CONTATO</th>
-                    <th scope="col">E-MAIL</th>                    
+                    <th scope="col">E-MAIL</th>
                     <th scope="col">AÇÕES</th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for registro in listData['regFunc'].items %}
+                  {% if not registro.nome == "ADMIN" %}
                   <tr>                   
                     <td>{{registro.nome}}</td>
                     <td>{{registro.mat}}</td>
                     <td>{{registro.endereco}}</td>
                     <td>{{registro.contato}}</td>
-                    <td>{{registro.email}}</td>                   
+                    <td>{{registro.email}}</td>
+                    {% if current_user.nome == "ADMIN" %}
                     <td>
-                      <a href="{{registro.id}}/updateFunc" class="btn btn-secondary btn-xs">Editar</a>
+                      <a href="{{registro.id}}/updateFunc" class="btn btn-secondary btn-xs">Editar</a>  
                       <a href="{{registro.id}}/removeFunc"
                         onclick="return confirm('Deseja realmente excluir esse registro ?')"
                         class="btn btn-danger btn-xs">Excluir</a>
-                    </td>
+                    </td>        
+                    {% endif %}
                   </tr> 
+                  {% endif %}
                   {% endfor %}
                 </tbody>
               </table>
@@ -59,19 +63,19 @@
 
 <div style="display: flex;">
     {% if listData['regFunc'].has_prev %}
-    <a href="{{listData['regFunc'].prev_num}}?nomeFuncionario={{_nomeFunc}}">«Anteriores |</a>
+    <a href="{{listData['regFunc'].prev_num}}?nomeFuncionario={{_nomeFunc}}">«Anterior |</a>
     {% else %}
-    <p>«Anteriores |</p>
+    <p>«Anterior |</p>
     {% endif %}
 
     {% if listData['regFunc'].has_next %}
       {% if listData['page'] == 1%}
-        <a href="list/{{listData['regFunc'].next_num}}?nomeFuncionario={{_nomeFunc}}">| Próximos»</a>
+        <a href="list/{{listData['regFunc'].next_num}}?nomeFuncionario={{_nomeFunc}}">| Próximo»</a>
       {% else %}
-        <a href="{{listData['regFunc'].next_num}}?nomeFuncionario={{_nomeFunc}}">| Próximos»</a>
+        <a href="{{listData['regFunc'].next_num}}?nomeFuncionario={{_nomeFunc}}">| Próximo»</a>
       {% endif %}
     {% else %}
-    <p>| Próximos»</p>
+    <p>| Próximo»</p>
     {% endif %}
 </div>
 

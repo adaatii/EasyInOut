@@ -120,14 +120,15 @@ void enviarPagina(String cartaoRFID) {
 }
 
 void servoRet(String resposta){
+ servo1.write(180);
  if (resposta == "1") {               
-        servo1.write(90);
+        servo1.write(85);
         digitalWrite(greenLed, HIGH);         
         delay(2500);
         digitalWrite(greenLed, LOW);
-        servo1.write(1);
+        servo1.write(180);
       }else{
-        servo1.write(1);
+        servo1.write(180);
         digitalWrite(redLed, HIGH);
         delay(2500);
         digitalWrite(redLed, LOW);

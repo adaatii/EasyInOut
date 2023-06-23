@@ -15,35 +15,6 @@
     </form>
 </div>
 <br>
-<!--<table class="table table-bordered table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th scope="col">RFID</th>
-            <th scope="col">NOME</th>
-            <th scope="col">MATRICULA</th>
-            <th scope="col">ENDEREÇO</th>
-            <th scope="col">CONTATO</th>
-            <th scope="col">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for registro in listData['regUser'].items %}
-        <tr>
-            <td>{{registro.rfid}}</td>
-            <td>{{registro.nome}}</td>
-            <td>{{registro.mat}}</td>
-            <td>{{registro.endereco}}</td>
-            <td>{{registro.contato}}</td>
-            <td>
-                <a href="{{registro.id}}/updateUser" class="btn btn-secondary btn-xs">Editar</a>
-                <a href="{{registro.id}}/removeUser"
-                    onclick="return confirm('Deseja realmente excluir esse registro ?')"
-                    class="btn btn-danger btn-xs">Excluir</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>-->
 
 <section class="intro">
     <div class="mask d-flex align-items-center h-100">
@@ -56,10 +27,10 @@
                                 <tr>
                                     <th scope="col">RFID</th>
                                     <th scope="col">NOME</th>
-                                    <th scope="col">MATRICULA</th>
+                                    <th scope="col">MATRÍCULA/RA</th>
                                     <th scope="col">ENDEREÇO</th>
-                                    <th scope="col">CONTATO</th>
-                                    <th scope="col">Ações</th>
+                                    <th scope="col">CONTATO</th>                                  
+                                    <th scope="col">AÇÃO</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,9 +43,9 @@
                                     <td>{{registro.contato}}</td>
                                     <td>
                                         <a href="{{registro.id}}/updateUser" class="btn btn-secondary btn-xs">Editar</a>
-                                        <a href="{{registro.id}}/removeUser"
+                                        <!--<a href="{{registro.id}}/removeUser"
                                             onclick="return confirm('Deseja realmente excluir esse registro ?')"
-                                            class="btn btn-danger btn-xs">Excluir</a>
+                                            class="btn btn-danger btn-xs">Excluir</a>-->
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -90,19 +61,19 @@
 
 <div style="display: flex;">
     {% if listData['regUser'].has_prev %}
-    <a href="{{listData['regUser'].prev_num }}?nomeUsuario={{_nomeUser}}"> «Anteriores |</a>
+    <a href="{{listData['regUser'].prev_num }}?nomeUsuario={{_nomeUser}}"> «Anterior |</a>
     {% else %}
-    <p> «Anteriores |</p>
+    <p> «Anterior |</p>
     {% endif %}
 
     {% if listData['regUser'].has_next %}
       {% if listData['page'] == 1 %}
-        <a href="{{list/listData['regUser'].next_num}}?nomeUsuario={{_nomeUser}}">| Próximos»</a>
+        <a href="{{list/listData['regUser'].next_num}}?nomeUsuario={{_nomeUser}}">| Próximo»</a>
       {% else %}
-        <a href="{{listData['regUser'].next_num}}?nomeUsuario={{_nomeUser}}">| Próximos»</a>
+        <a href="{{listData['regUser'].next_num}}?nomeUsuario={{_nomeUser}}">| Próximo»</a>
        {% endif %}
     {% else %}
-      <p>| Próximos»</p>
+      <p>| Próximo»</p>
     {% endif %}
 </div>
 {% endblock conteudo %}

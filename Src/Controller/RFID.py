@@ -3,7 +3,6 @@ from datetime import datetime
 from pytz import timezone
 from confg import db
 
-
 class RFID:
     def Register(rfidCode):
         # Grab date/time

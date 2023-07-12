@@ -8,7 +8,7 @@
 ### Backend
 
 * 🐍 [Python](https://www.python.org/)
-* 🧪 [Flask](https://flask.palletsprojects.com/en/2.3.x/)* 
+* 🧪 [Flask](https://flask.palletsprojects.com/en/2.3.x/)
 * ⚗️ [SQLAlchemy (Object Relational Mapper - ORM)](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/)
 
 ### Frontend

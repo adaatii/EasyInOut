@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 <br>
-<a href="{{url_for('router.func.createFunc')}}" class="btn btn-secondary btn-xs">Cadastrar novo funcionário</a>
+<a href="{{url_for('router.employee.createEmployee')}}" class="btn btn-secondary btn-xs">Cadastrar novo funcionário</a>
 <hr>
 <div class="row">
     <label class="form-label" for="form3Example4">Nome do funcionário</label>
     <fieldset class="form-group col-md-6">
-        <form action="{{url_for('router.func.listFunc')}}" method="GET">
-            <input type="text" class="form-control" name="nomeFuncionario" value="{{_nomeFunc}}">
+        <form action="{{url_for('router.employee.listEmployee')}}" method="GET">
+            <input type="text" class="form-control" name="nomeFuncionario" value="{{_nameEmployee}}">
     </fieldset>
     <fieldset class="form-group col-md-4">
         <button type="submit" class="btn btn-secondary">Filtrar</button>
@@ -33,7 +33,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for registro in listData['regFunc'].items %}
+                  {% for registro in listData['regEmployee'].items %}
                   {% if not registro.nome == "ADMIN" %}
                   <tr>                   
                     <td>{{registro.nome}}</td>
@@ -43,8 +43,8 @@
                     <td>{{registro.email}}</td>
                     {% if current_user.nome == "ADMIN" %}
                     <td>
-                      <a href="{{registro.id}}/updateFunc" class="btn btn-secondary btn-xs">Editar</a>  
-                      <a href="{{registro.id}}/removeFunc"
+                      <a href="{{registro.id}}/updateEmployee" class="btn btn-secondary btn-xs">Editar</a>  
+                      <a href="{{registro.id}}/removeEmployee"
                         onclick="return confirm('Deseja realmente excluir esse registro ?')"
                         class="btn btn-danger btn-xs">Excluir</a>
                     </td>        
@@ -62,17 +62,17 @@
 </section>
 
 <div style="display: flex;">
-    {% if listData['regFunc'].has_prev %}
-    <a href="{{listData['regFunc'].prev_num}}?nomeFuncionario={{_nomeFunc}}">«Anterior |</a>
+    {% if listData['regEmployee'].has_prev %}
+    <a href="{{listData['regEmployee'].prev_num}}?nomeFuncionario={{_nameEmployee}}">«Anterior |</a>
     {% else %}
     <p>«Anterior |</p>
     {% endif %}
 
-    {% if listData['regFunc'].has_next %}
+    {% if listData['regEmployee'].has_next %}
       {% if listData['page'] == 1%}
-        <a href="list/{{listData['regFunc'].next_num}}?nomeFuncionario={{_nomeFunc}}">| Próximo»</a>
+        <a href="list/{{listData['regEmployee'].next_num}}?nomeFuncionario={{_nameEmployee}}">| Próximo»</a>
       {% else %}
-        <a href="{{listData['regFunc'].next_num}}?nomeFuncionario={{_nomeFunc}}">| Próximo»</a>
+        <a href="{{listData['regEmployee'].next_num}}?nomeFuncionario={{_nameEmployee}}">| Próximo»</a>
       {% endif %}
     {% else %}
     <p>| Próximo»</p>

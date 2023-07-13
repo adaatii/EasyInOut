@@ -3,8 +3,8 @@ from confg import db
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash
 
-class FuncsController:  
-  def createFunc(mat,nome,endereco,contato,email,senha):
+class EmployeeController:  
+  def createEmployee(mat,nome,endereco,contato,email,senha):
     passwd=generate_password_hash(senha)
     func = FuncBd(mat.upper(),nome.upper(),endereco.upper(),contato.upper(),email,passwd)
     db.session.add(func) 
@@ -15,7 +15,7 @@ class FuncsController:
       db.session.rollback()
       return False
 
-  def updateFunc(id, _registro, _nome, _endereco, _contato, _email, _senha):   
+  def updateEmployee(id, _registro, _nome, _endereco, _contato, _email, _senha):   
     try:
       passwd=generate_password_hash(_senha)
       FuncBd.query.filter_by(id=id).update({'mat':_registro.upper(),'nome':_nome.upper(), 'endereco':_endereco.upper(),'contato':_contato.upper(),'email':_email,'senha':passwd })
@@ -25,7 +25,7 @@ class FuncsController:
       db.session.rollback()
       return False
       
-  def removeFunc(id):   
+  def removeEmployee(id):   
     _func = FuncBd.query.filter_by(id=id).first()    
     db.session.delete(_func)
     db.session.commit()
@@ -39,7 +39,7 @@ class FuncsController:
       query = FuncBd.query.filter(FuncBd.nome.like('%'+_funcFilter+'%')).paginate(page=page, per_page=per_page)        
       queryCount = FuncBd.query.count()
     return {
-      "regFunc": query,
+      "regEmployee": query,
       "count": queryCount,
       "page": page,
       "per_page": per_page

@@ -22,11 +22,11 @@ The API was designed using the Model-View-Controller (MVC) pattern:
 
 #### View (Directory that contains the classes for the project activities)
 
-* [User](Src/View/User.py), [Traffic](Src/View/Traffic.py), [Login](Src/View/Login.py), [Home](Src/View/Home.py), [Func](Src/View/Func.py) and [About](Src/View/About.py)
+* [User](Src/View/User.py), [Traffic](Src/View/Traffic.py), [Login](Src/View/Login.py), [Home](Src/View/Home.py), [Employee](Src/View/Employee.py) and [About](Src/View/About.py)
 
 #### Controller (Action methods)
 
-* [Users](Src/Controller/Users.py), [Funcs](Src/Controller/Funcs.py) and [RFID](Src/Controller/Funcs.py)
+* [Users](Src/Controller/Users.py), [Employees](Src/Controller/Employees.py) and [RFID](Src/Controller/RFID.py)
 
 #### Model (The logical structure of a database)
 

@@ -14,19 +14,19 @@
   </div>
   {% endif %}
 {% endfor %}
-<form method="POST" action="{{url_for('router.func.updateFunc', id=func.id)}}">
+<form method="POST" action="{{url_for('router.employee.updateEmployee', id=employee.id)}}">
   <div class="row">
     <div class="col-sm-6">
       <label class="form-label" for="form3Example4">Matricula</label>
-      <input type="text" minlength="6" maxlength="13" class="form-control" name="mat" value="{{func.mat}}"><br>     
+      <input type="text" minlength="6" maxlength="13" class="form-control" name="mat" value="{{employee.mat}}"><br>     
       <label class="form-label" for="form3Example4">Nome do usuário</label>
-      <input type="text" class="form-control" name="nome" value="{{func.nome}}"><br>
+      <input type="text" class="form-control" name="nome" value="{{employee.nome}}"><br>
       <label class="form-label" for="form3Example4">Endereço</label>
-      <input type="text" class="form-control" name="endereco" value="{{func.endereco}}"><br>
+      <input type="text" class="form-control" name="endereco" value="{{employee.endereco}}"><br>
       <label class="form-label" for="form3Example4">Celular</label>
-      <input type="text" class="form-control" name="contato" value="{{func.contato}}" id="celular"><br>
+      <input type="text" class="form-control" name="contato" value="{{employee.contato}}" id="celular"><br>
       <label class="form-label" for="form3Example4">E-mail</label>
-      <input type="text" class="form-control" name="email" value="{{func.email}}"><br>
+      <input type="text" class="form-control" name="email" value="{{employee.email}}"><br>
       <label class="form-label" for="form3Example4">Senha</label>
       <input type="password" class="form-control" name="senha"><br>
       <hr>        

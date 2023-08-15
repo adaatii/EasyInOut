@@ -64,7 +64,7 @@ python main.py
 
 #
 ### Navigate the project
- - ###### [MVC](https://github.com/adaatii/EasyInOut/tree/main/Src) 
+ - ###### [Backend](https://github.com/adaatii/EasyInOut/tree/main/Src) 
  - ###### [Frontend](https://github.com/adaatii/EasyInOut/tree/main/Templates)
 
 
